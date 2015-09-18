@@ -16,7 +16,7 @@
  * Plugin Name:       Functionality for Shopera theme
  * Plugin URI:        http://cohhe.com/
  * Description:       This plugin contains Shopera theme core functionality
- * Version:           1.1
+ * Version:           1.2
  * Author:            Cohhe
  * Author URI:        http://cohhe.com/
  * License:           GPL-2.0+
@@ -172,18 +172,28 @@ function shopera_woo_featured_categories( $atts, $content = null ) {
 add_shortcode('woo_featured_categories','shopera_woo_featured_categories');
 
 function shopera_get_woo_categories( $post_id, $category_slug ) {
-	$cat_post = get_post( $post_id );
-	$cat_excerpt = $cat_post->post_excerpt;
+	if (strpos($post_id,'|') !== false) {
+		$cat_data = explode('|', $post_id);
+		$cat_excerpt = $cat_data['2'];
+		$cat_title = $cat_data['1'];
+		$slide_image_url = wp_get_attachment_image_src( $cat_data['0'], 'shopera-huge-width' );
+		$cat_img = $slide_image_url[0];
+	} else {
+		$cat_post = get_post( $post_id );
+		$cat_excerpt = $cat_post->post_excerpt;
+		$cat_title = get_the_title($post_id);
+		$slide_image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'shopera-huge-width' );
+		$cat_img = $slide_image_url[0];
+	}
+
 	$output = '';
 
 	$output .= '<div class="woo-category-item">';
-		$slide_image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'shopera-huge-width' );
-		$output .= '<div class="woo-category-image" style="background-image:url('.$slide_image_url[0].');"></div>';
+		$output .= '<div class="woo-category-image" style="background-image:url('.$cat_img.');"></div>';
 		$output .= '<a href="'.esc_url(site_url()).'/?product_cat='.esc_attr($category_slug).'" class="woo-category-inner">';
-			$output .= '<span class="woo-category-title paint-area paint-area--text">'.get_the_title($post_id).'</span>';
+			$output .= '<span class="woo-category-title paint-area paint-area--text">'.$cat_title.'</span>';
 			$output .= '<span class="woo-category-excerpt paint-area paint-area--text">-'.$cat_excerpt.'-</span>';
 		$output .= '</a>';
-		// $output .= '<a href="'.esc_url(site_url()).'/?product_cat='.esc_attr($category_slug).'"></a>';
 	$output .= '</div>';
 
 	echo $output;
