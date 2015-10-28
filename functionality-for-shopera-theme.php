@@ -16,7 +16,7 @@
  * Plugin Name:       Functionality for Shopera theme
  * Plugin URI:        http://cohhe.com/
  * Description:       This plugin contains Shopera theme core functionality
- * Version:           1.2
+ * Version:           1.3
  * Author:            Cohhe
  * Author URI:        http://cohhe.com/
  * License:           GPL-2.0+
@@ -97,11 +97,24 @@ function shopera_woo_add_brand_slider( $atts, $content = null ) {
 		<div class="brand-carousel-container">
 			<div class="brand-carousel">';
 				foreach ($brand_ids as $brand_value) {
-					$brand_image = wp_get_attachment_image_src( $brand_value, 'shopera-brand-image' );
+					$image_id = $brand_value;
+					$link = '';
+					if ( strpos($brand_value,':') !== false ) {
+						$brand_value = explode(':', $brand_value);
+						$image_id = $brand_value['0'];
+						$link = get_permalink( $brand_value['1'] );
+					}
 
-					$output .= '<div class="brand-item">
-									<img class="" src="' . $brand_image['0'] . '" alt="">
-								</div>';
+					$brand_image = wp_get_attachment_image_src( $image_id, 'shopera-brand-image' );
+
+					$output .= '<div class="brand-item">';
+						if ( $link == '' ) {
+							$output .= '<img class="" src="' . $brand_image['0'] . '" alt="">';
+						} else {
+							$output .= '<a href="' . $link . '"><img class="" src="' . $brand_image['0'] . '" alt="brand-image"></a>';
+						}
+									
+					$output .= '</div>';
 				}
 		$output .= '
 			</div>
