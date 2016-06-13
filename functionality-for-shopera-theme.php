@@ -16,7 +16,7 @@
  * Plugin Name:       Functionality for Shopera theme
  * Plugin URI:        http://cohhe.com/
  * Description:       This plugin contains Shopera theme core functionality
- * Version:           1.3
+ * Version:           1.4
  * Author:            Cohhe
  * Author URI:        http://cohhe.com/
  * License:           GPL-2.0+
@@ -218,6 +218,14 @@ function shopera_woo_testimonial_carousel( $atts, $content = null ) {
 		'limit'    => '-1'
 	), $atts ) );
 	$output = '';
+
+	// For SiteOrigins Page Builder - Because of infinite loops, don't render this shortcode if its inside another loop
+	static $depth = 0;
+	$depth++;
+	if( $depth > 1 ) {
+		$depth--;
+		return;
+	}
 
 	query_posts(array(
 		'post_type' => 'testimonial',
