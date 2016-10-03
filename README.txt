@@ -1,9 +1,9 @@
 === Functionality for Shopera theme ===
 Contributors: cohhe
 Tags: shopera, ecommerce
-Requires at least: 4.2
-Tested up to: 4.3.1
-Stable tag: 1.2
+Requires at least: 4.5
+Tested up to: 4.6.1
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,12 +30,28 @@ Installing "Shopera functionality" can be done either by searching for "Shopera 
 
 == Changelog ==
 
+= 1.3 =
+* Fixed Page Builder plugin issue
+
+= 1.2 =
+* Brand slider images can be linked to posts/pages
+
+= 1.2 =
+* Improved woo_featured_categories shortcode
+
 = 1.0 =
-* 2015-08-04
 * Initial release
 
 == Upgrade Notice ==
 
+= 1.3 =
+* Fixed Page Builder plugin issue
+
+= 1.2 =
+* Brand slider images can be linked to posts/pages
+
+= 1.2 =
+* Improved woo_featured_categories shortcode
+
 = 1.0 =
-* 2015-08-04
 * Initial release
