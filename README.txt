@@ -2,13 +2,8 @@
 Contributors: cohhe
 Tags: shopera, ecommerce
 Requires at least: 4.5
-<<<<<<< HEAD
 Tested up to: 4.8
 Stable tag: 1.5
-=======
-Tested up to: 4.6.1
-Stable tag: 1.4
->>>>>>> c900276fe7ed0e912bbb6c9f396ebf860ef1cc74
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
