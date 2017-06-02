@@ -16,7 +16,7 @@
  * Plugin Name:       Functionality for Shopera theme
  * Plugin URI:        http://cohhe.com/
  * Description:       This plugin contains Shopera theme core functionality
- * Version:           1.4
+ * Version:           1.5
  * Author:            Cohhe
  * Author URI:        http://cohhe.com/
  * License:           GPL-2.0+
